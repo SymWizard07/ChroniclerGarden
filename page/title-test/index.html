@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark" style="font-size: 100%;">
+<html lang="en" data-theme="slate-and-gold" style="font-size: 100%;">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -296,8 +296,8 @@
 
     /* Semantic Colors */
     --color-text-link: #1a6eb5;
-    /* File tree: hue complement of icon color (fallback if relative oklch unsupported) */
-    --color-published-resource: #2a7a6d;
+    /* File tree: distinct from --color-icons (uses syntax accent, safe for mask icons) */
+    --color-published-resource: var(--code-tag);
     --color-text-link-broken: #a83232;
     --color-text-error: #8b0000; /* darkred */
     --color-background-error: rgba(139, 0, 0, 0.1);
@@ -348,7 +348,7 @@
     --code-tag: #c792ea; /* Soft purple */
     --code-attribute: #82aaff; /* Cornflower blue */
     --code-string: #c3e88d; /* Sage green */
-    --color-published-resource: #d4a054; /* Warm gold vs slate-blue icons */
+    --color-published-resource: var(--code-tag);
 }
 
 [data-theme="burgundy"] {
@@ -386,7 +386,7 @@
     --code-tag: #da70d6; /* Orchid/Amethyst (Purple stands out from Gold) */
     --code-attribute: #00ced1; /* Dark Turquoise (Gemstone Blue) */
     --code-string: #adff2f; /* Green-Yellow (Peridot - distinct brightness) */
-    --color-published-resource: #b48edd; /* Orchid vs gold icons */
+    --color-published-resource: var(--code-tag);
 }
 
 /* --- Sci-Fi Hologram Theme --- */
@@ -417,7 +417,7 @@
     --code-tag: #d542ff;
     --code-attribute: #ffe600;
     --code-string: #ff5e78;
-    --color-published-resource: #ff6b35; /* Warm orange vs cyan icons */
+    --color-published-resource: var(--code-tag);
 }
 
 [data-theme="professional"] {
@@ -445,7 +445,7 @@
     --code-tag: #e45649; /* Soft Red */
     --code-attribute: #0184bc; /* Cerulean Blue (Crisp) */
     --code-string: #50a14f; /* Vivid Green */
-    --color-published-resource: #d97706; /* Amber vs professional blue icons */
+    --color-published-resource: var(--code-tag);
 }
 
 [data-theme="paneidos"] {
@@ -463,23 +463,7 @@
     --code-tag: #b58900;
     --code-attribute: #268bd2;
     --code-string: #2aa198;
-    --color-published-resource: #2aa198; /* Teal vs deep red icons */
-}
-
-/*
- * Custom themes: derive a visible complement from whatever --color-icons is set to.
- */
-@supports (color: oklch(from #000 l c h)) {
-    :root,
-    :root[data-theme],
-    [data-theme] {
-        --color-published-resource: oklch(
-            from var(--color-icons)
-            l
-            max(0.14, c)
-            calc(h + 180deg)
-        );
-    }
+    --color-published-resource: var(--code-tag);
 }
 
 /* Global Styles */
@@ -880,6 +864,7 @@ body {
   padding: 0.25rem;
   color: var(--color-text-secondary);
   opacity: 0.8;
+  font-size: 1.5rem;
 }
 .browser-btn.ghost:hover {
   opacity: 1;
