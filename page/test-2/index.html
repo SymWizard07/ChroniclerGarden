@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Index for #tags</title>
+  <title>test 2</title>
   <style>/* --- Junicode (Body: Light/Classic) --- */
 @font-face {
     font-family: "Junicode";
@@ -1621,17 +1621,17 @@ img { max-width: 100%; height: auto; }
     <input type="search" id="browser-sidebar-search" class="search-input" placeholder="Search files..." autocomplete="off" />
   </div>
   <div class="tab-navigation">
-    <button type="button" data-sidebar-tab="files" class="" title="Files"><span class="themed-icon img-icon" style="--icon-url: url('/ChroniclerGarden/icons/default/Icons_Folder.svg')" aria-hidden="true"></span></button>
-    <button type="button" data-sidebar-tab="tags" class="active" title="Tags"><span class="themed-icon img-icon" style="--icon-url: url('/ChroniclerGarden/icons/default/Icons_Tags.svg')" aria-hidden="true"></span></button>
+    <button type="button" data-sidebar-tab="files" class="active" title="Files"><span class="themed-icon img-icon" style="--icon-url: url('/ChroniclerGarden/icons/default/Icons_Folder.svg')" aria-hidden="true"></span></button>
+    <button type="button" data-sidebar-tab="tags" class="" title="Tags"><span class="themed-icon img-icon" style="--icon-url: url('/ChroniclerGarden/icons/default/Icons_Tags.svg')" aria-hidden="true"></span></button>
     <button type="button" data-sidebar-tab="gallery" class="" title="Image Gallery"><span class="themed-icon img-icon" style="--icon-url: url('/ChroniclerGarden/icons/default/Icons_Gallery.svg')" aria-hidden="true"></span></button>
   </div>
   <div class="sidebar-content">
-    <div data-panel="files" hidden></div>
-    <div data-panel="tags"></div>
+    <div data-panel="files"></div>
+    <div data-panel="tags" hidden></div>
     <div data-panel="gallery" hidden></div>
   </div>
 </aside>
-  <script id="browser-sidebar-data" type="application/json">{"tree":{"name":"Caelora","path":"C:/Users/cade0/Documents/Caelora","file_type":"Directory","children":[{"name":"test","path":"/ChroniclerGarden/page/test","file_type":"Markdown"},{"name":"test 2","path":"/ChroniclerGarden/page/test-2","file_type":"Markdown"}]},"tags":[{"tag":"add","pages":[{"title":"test","path":"C:/Users/cade0/Documents/Caelora/test.md"},{"title":"test 2","path":"C:/Users/cade0/Documents/Caelora/test 2.md"}]},{"tag":"tags","pages":[{"title":"test","path":"C:/Users/cade0/Documents/Caelora/test.md"},{"title":"test 2","path":"C:/Users/cade0/Documents/Caelora/test 2.md"}]},{"tag":"your","pages":[{"title":"test","path":"C:/Users/cade0/Documents/Caelora/test.md"},{"title":"test 2","path":"C:/Users/cade0/Documents/Caelora/test 2.md"}]}],"gallery":[],"routes":[{"slug":"test","title":"test"},{"slug":"test-2","title":"test 2"}],"currentSlug":"","currentTag":"tags","activeTab":"tags"}</script>
+  <script id="browser-sidebar-data" type="application/json">{"tree":{"name":"Caelora","path":"C:/Users/cade0/Documents/Caelora","file_type":"Directory","children":[{"name":"test","path":"/ChroniclerGarden/page/test","file_type":"Markdown"},{"name":"test 2","path":"/ChroniclerGarden/page/test-2","file_type":"Markdown"}]},"tags":[{"tag":"add","pages":[{"title":"test","path":"C:/Users/cade0/Documents/Caelora/test.md"},{"title":"test 2","path":"C:/Users/cade0/Documents/Caelora/test 2.md"}]},{"tag":"tags","pages":[{"title":"test","path":"C:/Users/cade0/Documents/Caelora/test.md"},{"title":"test 2","path":"C:/Users/cade0/Documents/Caelora/test 2.md"}]},{"tag":"your","pages":[{"title":"test","path":"C:/Users/cade0/Documents/Caelora/test.md"},{"title":"test 2","path":"C:/Users/cade0/Documents/Caelora/test 2.md"}]}],"gallery":[],"routes":[{"slug":"test","title":"test"},{"slug":"test-2","title":"test 2"}],"currentSlug":"test-2","currentTag":null,"activeTab":"files"}</script>
   <main class="browser-main">
     <header class="browser-view-header">
       <div class="browser-header-left">
@@ -1640,15 +1640,18 @@ img { max-width: 100%; height: auto; }
           <button class="browser-btn ghost" data-browser-action="forward" title="Forward" aria-label="Forward"><span class="themed-icon img-icon browser-nav-icon" style="--icon-url: url('/ChroniclerGarden/icons/default/Icons_Forward.svg')" aria-hidden="true"></span></button>
         </div>
         <div class="browser-title-container">
-          <h2 class="browser-view-title">Index for <span class="tag-highlight">#tags</span></h2>
+          <h2 class="browser-view-title" title="test 2">test 2</h2>
         </div>
       </div>
       <div class="browser-view-actions"></div>
     </header>
     <div class="browser-page-body">
-      <div class="tag-index-wrapper">
-      <ul class="page-link-list"><li><a class="link-button" href="/ChroniclerGarden/page/test">test</a></li><li><a class="link-button" href="/ChroniclerGarden/page/test-2">test 2</a></li></ul>
-    </div>
+      <article class="chronicler-content">
+      
+      
+      <p>linked!</p>
+
+    </article>
     </div>
   </main>
   <script>
@@ -1657,6 +1660,17 @@ img { max-width: 100%; height: auto; }
     });
     document.querySelector('[data-browser-action="back"]')?.addEventListener('click', () => history.back());
     document.querySelector('[data-browser-action="forward"]')?.addEventListener('click', () => history.forward());
+    const contentsButton = document.querySelector('[data-browser-action="contents"]');
+    const toc = document.querySelector('.browser-toc');
+    if (contentsButton && toc) {
+      const setTocVisible = (visible) => {
+        toc.hidden = !visible;
+        contentsButton.setAttribute('aria-pressed', String(visible));
+        contentsButton.classList.toggle('active', visible);
+      };
+      setTocVisible(true);
+      contentsButton.addEventListener('click', () => setTocVisible(toc.hidden));
+    }
   </script>
   <script>(function () {
   const dataEl = document.getElementById("browser-sidebar-data");
