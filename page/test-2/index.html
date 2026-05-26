@@ -1700,6 +1700,9 @@ img { max-width: 100%; height: auto; }
     });
     document.querySelector('[data-browser-action="back"]')?.addEventListener('click', () => history.back());
     document.querySelector('[data-browser-action="forward"]')?.addEventListener('click', () => history.forward());
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) location.reload();
+    });
     const contentsButton = document.querySelector('[data-browser-action="contents"]');
     const toc = document.querySelector('.browser-toc');
     if (contentsButton && toc) {
