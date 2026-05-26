@@ -296,6 +296,8 @@
 
     /* Semantic Colors */
     --color-text-link: #1a6eb5;
+    /* File tree: hue complement of icon color (fallback if relative oklch unsupported) */
+    --color-published-resource: #2a7a6d;
     --color-text-link-broken: #a83232;
     --color-text-error: #8b0000; /* darkred */
     --color-background-error: rgba(139, 0, 0, 0.1);
@@ -346,6 +348,7 @@
     --code-tag: #c792ea; /* Soft purple */
     --code-attribute: #82aaff; /* Cornflower blue */
     --code-string: #c3e88d; /* Sage green */
+    --color-published-resource: #d4a054; /* Warm gold vs slate-blue icons */
 }
 
 [data-theme="burgundy"] {
@@ -383,6 +386,7 @@
     --code-tag: #da70d6; /* Orchid/Amethyst (Purple stands out from Gold) */
     --code-attribute: #00ced1; /* Dark Turquoise (Gemstone Blue) */
     --code-string: #adff2f; /* Green-Yellow (Peridot - distinct brightness) */
+    --color-published-resource: #b48edd; /* Orchid vs gold icons */
 }
 
 /* --- Sci-Fi Hologram Theme --- */
@@ -413,6 +417,7 @@
     --code-tag: #d542ff;
     --code-attribute: #ffe600;
     --code-string: #ff5e78;
+    --color-published-resource: #ff6b35; /* Warm orange vs cyan icons */
 }
 
 [data-theme="professional"] {
@@ -440,6 +445,7 @@
     --code-tag: #e45649; /* Soft Red */
     --code-attribute: #0184bc; /* Cerulean Blue (Crisp) */
     --code-string: #50a14f; /* Vivid Green */
+    --color-published-resource: #d97706; /* Amber vs professional blue icons */
 }
 
 [data-theme="paneidos"] {
@@ -457,6 +463,23 @@
     --code-tag: #b58900;
     --code-attribute: #268bd2;
     --code-string: #2aa198;
+    --color-published-resource: #2aa198; /* Teal vs deep red icons */
+}
+
+/*
+ * Custom themes: derive a visible complement from whatever --color-icons is set to.
+ */
+@supports (color: oklch(from #000 l c h)) {
+    :root,
+    :root[data-theme],
+    [data-theme] {
+        --color-published-resource: oklch(
+            from var(--color-icons)
+            l
+            max(0.14, c)
+            calc(h + 180deg)
+        );
+    }
 }
 
 /* Global Styles */
@@ -764,7 +787,7 @@ a[href]:hover {
     min-width: 0;
 }</style>
   <style>:root, html {
-  --font-family-heading: "Merriweather", serif;
+  --font-family-heading: "Cinzel", serif;
   --font-family-body: "Spectral", serif;
   --font-mono: "IBM Plex Mono", monospace;
 }
